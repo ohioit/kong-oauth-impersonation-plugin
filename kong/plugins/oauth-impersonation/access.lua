@@ -17,8 +17,8 @@ end
 local _M = {}
 
 function _M.execute(conf)
-    if ngx.ctx.authenticated_token then
-        local token = ngx.ctx.authenticated_token
+    if ngx.ctx.authenticated_oauth2_token then
+        local token = ngx.ctx.authenticated_oauth2_token
         local cache_key = singletons.dao.oauth2_impersonation:cache_key(token.id)
 
         impersonation, err = singletons.cache:get(cache_key, nil, load_impersonation, token.id)
